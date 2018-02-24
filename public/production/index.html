@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--<title>ACID Labs | Testing </title>-->
+    <title>Testing </title>
+
+    <!-- Bootstrap -->
+    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+  
+    <!-- bootstrap-progressbar -->
+    <link href="../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="../vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+    <!-- bootstrap-daterangepicker -->
+    <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.min.css" rel="stylesheet">
+    <style type="text/css">
+      div#legend {
+          position: absolute;
+          right: 0px;
+      }
+      #legend ul {
+          list-style: none;
+          font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+          font-size: 12px;
+      }
+
+      #legend ul span {
+          display: inline-block;
+          height: 1em;
+          width: 1em;
+          margin-right: 0.5em;
+      }
+            #loader {
+          bottom: 0;
+          height: 175px;
+          left: 0;
+          margin: auto;
+          position: fixed;
+          right: 0;
+          top: 0;
+          width: 175px;
+          z-index: 99999
+      }
+      #loader {
+          bottom: 0;
+          height: 175px;
+          left: 0;
+          margin: auto;
+          position: absolute;
+          right: 0;
+          top: 0;
+          width: 175px;
+      }
+      #loader .dot {
+          bottom: 0;
+          height: 100%;
+          left: 0;
+          margin: auto;
+          position: absolute;
+          right: 0;
+          top: 0;
+          width: 87.5px;
+      }
+      #loader .dot::before {
+          border-radius: 100%;
+          content: "";
+          height: 87.5px;
+          left: 0;
+          position: absolute;
+          right: 0;
+          top: 0;
+          transform: scale(0);
+          width: 87.5px;
+      }
+      #loader .dot:nth-child(7n+1) {
+          transform: rotate(45deg);
+      }
+      #loader .dot:nth-child(7n+1)::before {
+          animation: 0.8s linear 0.1s normal none infinite running load;
+          background: #00ff80 none repeat scroll 0 0;
+      }
+      #loader .dot:nth-child(7n+2) {
+          transform: rotate(90deg);
+      }
+      #loader .dot:nth-child(7n+2)::before {
+          animation: 0.8s linear 0.2s normal none infinite running load;
+          background: #00ffea none repeat scroll 0 0;
+      }
+      #loader .dot:nth-child(7n+3) {
+          transform: rotate(135deg);
+      }
+      #loader .dot:nth-child(7n+3)::before {
+          animation: 0.8s linear 0.3s normal none infinite running load;
+          background: #00aaff none repeat scroll 0 0;
+      }
+      #loader .dot:nth-child(7n+4) {
+          transform: rotate(180deg);
+      }
+      #loader .dot:nth-child(7n+4)::before {
+          animation: 0.8s linear 0.4s normal none infinite running load;
+          background: #0040ff none repeat scroll 0 0;
+      }
+      #loader .dot:nth-child(7n+5) {
+          transform: rotate(225deg);
+      }
+      #loader .dot:nth-child(7n+5)::before {
+          animation: 0.8s linear 0.5s normal none infinite running load;
+          background: #2a00ff none repeat scroll 0 0;
+      }
+      #loader .dot:nth-child(7n+6) {
+          transform: rotate(270deg);
+      }
+      #loader .dot:nth-child(7n+6)::before {
+          animation: 0.8s linear 0.6s normal none infinite running load;
+          background: #9500ff none repeat scroll 0 0;
+      }
+      #loader .dot:nth-child(7n+7) {
+          transform: rotate(315deg);
+      }
+      #loader .dot:nth-child(7n+7)::before {
+          animation: 0.8s linear 0.7s normal none infinite running load;
+          background: magenta none repeat scroll 0 0;
+      }
+      #loader .dot:nth-child(7n+8) {
+          transform: rotate(360deg);
+      }
+      #loader .dot:nth-child(7n+8)::before {
+          animation: 0.8s linear 0.8s normal none infinite running load;
+          background: #ff0095 none repeat scroll 0 0;
+      }
+      #loader .lading {
+          background-position: 50% 50%;
+          background-repeat: no-repeat;
+          bottom: -40px;
+          height: 20px;
+          left: 0;
+          position: absolute;
+          right: 0;
+          width: 180px;
+      }
+      @keyframes load {
+      100% {
+          opacity: 0;
+          transform: scale(1);
+      }
+      }
+      @keyframes load {
+      100% {
+          opacity: 0;
+          transform: scale(1);
+      }
+      }
+    </style>
+   </head>
+
+  <body class="nav-sm" ng-app="myApp">
+    <div class="container body">
+      <div id="loader">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="lading"></div>
+      </div>
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="/" class="site_title"><i class="fa fa-home"></i> <span>Gentelella Alela!</span></a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <!-- menu profile quick info -->
+            <div class="profile clearfix">
+              <div class="profile_pic">
+                
+              </div>
+              <div class="profile_info">
+                <span>Welcome,</span>
+                <h2>John Doe</h2>
+              </div>
+            </div>
+            <!-- /menu profile quick info -->
+
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <h3>General</h3>
+                <ul class="nav side-menu">
+                  <li><a><i class="fa fa-line-chart"></i> BTC <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="btc/day">HORA</a></li>
+                      <li><a href="btc/month">MES</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-line-chart"></i> ETH <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="eth/day">HORA</a></li>
+                      <li><a href="eth/month">MES</a></li>
+                    </ul>
+                  </li>
+                  <li><a id="emptyredis" onclick="emptyredis()" ><i class="fa fa-trash"></i> DROP REDIS <span class="fa fa-chevron-down"></span></a>  
+                  </li>
+                  <ul>
+              </div>
+              
+            </div>
+            <!-- /sidebar menu -->
+
+            <!-- /menu footer buttons -->
+            <div class="sidebar-footer hidden-small">
+              <!--<a data-toggle="tooltip" data-placement="top" title="Settings">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              </a>-->
+              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Lock">
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
+            </div>
+            <!-- /menu footer buttons -->
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+          <div class="nav_menu">
+            <nav>
+              <!--<div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              </div>-->
+              
+            </nav>
+          </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+         
+          <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Resultados</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>-->
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <iframe class="chartjs-hidden-iframe" style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;"></iframe>
+                    <div id="legend"></div>
+                    <canvas id="lineChart1" height="930" width="2061" style="width: 441px; height: 220px;"></canvas>
+            
+
+
+
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>          
+  
+          </div>
+          <br />
+          
+
+          <div class="row">
+          </div>
+
+          <div class="row">
+          </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+            MARTIN TORRES URRUTIA | Test App</a>
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Chart.js -->
+    <script src="../vendors/Chart.js/dist/Chart.min.js"></script>
+    <script src="../javascripts/moment.min.js"></script>
+       
+    <!-- Custom Theme Scripts -->
+    <script src="../build/js/custom.min.js"></script>
+    <script type="text/javascript">
+      titles = [];
+      open = [];
+      high = [];
+      low = [];
+      close = [];
+      volume = [];
+      function emptyredis(){
+        $.getJSON('/json/delete', function(data) {
+          console.log(data);
+          if(data){location.reload();}
+        })
+      }
+      
+      $.getJSON('/json/eth_60min', function(data) {
+        //console.log(data);
+        var dataj = JSON.parse(data);
+        console.log(dataj);
+        for (var propName in dataj["Time Series (60min)"]) {
+            titles.push(propName);  
+            console.log(propName);
+            for (var propName1 in dataj["Time Series (60min)"][propName] ) {
+              eval(propName1.substr(3)).push(dataj["Time Series (60min)"][propName][propName1])
+            }
+        }  
+      
+      titles.splice(24);
+      open.splice(24);
+      high.splice(24);
+      low.splice(24);
+      close.splice(24);
+      volume.splice(24);
+    
+      if ($('#lineChart1').length ){ 
+        var ctx = document.getElementById("lineChart1");
+        var lineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: titles,
+          datasets: [{
+          label: "OPEN",
+          backgroundColor: "rgba(191, 191, 63, .5)",
+          borderColor: "rgba(191, 191, 63, .5)",
+          pointBorderColor: "rgba(191, 191, 63, .5)",
+          pointBackgroundColor: "rgba(191, 191, 63, .5)",
+          pointHoverBackgroundColor: "#fff",
+          pointHoverBorderColor: "rgba(191, 191, 63, .5)",
+          pointBorderWidth: 0,
+          data: open
+          }, {
+          label: "HIGH",
+          backgroundColor: "rgba(127, 191, 63,.5)",
+          borderColor: "rgba(127, 191, 63,.5)",
+          pointBorderColor: "rgba(127, 191, 63,.5)",
+          pointBackgroundColor: "rgba(127, 191, 63,.5)",
+          pointHoverBackgroundColor: "#fff",
+          pointHoverBorderColor: "rgba(127, 191, 63,.5)",
+          pointBorderWidth: 0,
+          data: high
+          }, {
+          label: "LOW",
+          backgroundColor: "rgba(63, 191, 191,.5)",
+          borderColor: "rgba(63, 191, 191,.5)",
+          pointBorderColor: "rgba(63, 191, 191,.5)",
+          pointBackgroundColor: "rgba(63, 191, 191,.5)",
+          pointHoverBackgroundColor: "#fff",
+          pointHoverBorderColor: "rgba(63, 191, 191,.5)",
+          pointBorderWidth: 0,
+          data: low
+          }, {
+          label: "CLOSE",
+          backgroundColor: "rgba(191, 63, 191,.5)",
+          borderColor: "rgba(191, 63, 191,.5)",
+          pointBorderColor: "rgba(191, 63, 191,.5)",
+          pointBackgroundColor: "rgba(191, 63, 191,.5)",
+          pointHoverBackgroundColor: "#fff",
+          pointHoverBorderColor: "rgba(191, 63, 191,.5)",
+          pointBorderWidth: 0,
+          data: close
+          } ]
+        }, options: {
+          responsive: true,
+          title:{
+          display:true,
+          text:"ETH Últimas 24 horas"
+          }, 
+        }
+        });
+        document.getElementById("legend").innerHTML = lineChart.generateLegend();
+      };
+      $("#loader").fadeOut();
+      });
+    </script>
+    
+  </body>
+</html>
